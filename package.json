@@ -1,0 +1,24 @@
+{
+  "name": "wrnch",
+  "version": "1.0.0",
+  "description": "coding challenge",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/escobot/wrnch.git"
+  },
+  "author": "pbgnz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/escobot/wrnch/issues"
+  },
+  "homepage": "https://github.com/escobot/wrnch#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "redis": "^3.0.2"
+  }
+}
