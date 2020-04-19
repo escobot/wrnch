@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>wrench</title>
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <link rel="stylesheet" href="/resources/demos/style.css">
+      <style>
+         #sortable { list-style-type: none; margin: 0; padding: 0; width: 450px; }
+         #sortable li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 100px; height: 90px; font-size: 4em; text-align: center; }
+         img { border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 33px; }
+      </style>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script>
+         $( function() {
+           $( "#sortable" ).sortable({
+         update: function( event, ui ) {}
+           });
+           $( "#sortable" ).disableSelection();
+           $( "#sortable" ).on( "sortupdate", function( event, ui ) {
+                     $.ajax({
+                       url: '/order',
+                       type: 'POST',
+                       data: {
+                          0: $( "li" ).get( 0 ).lastChild.attributes[1].nodeValue, 
+                          1: $( "li" ).get( 1 ).lastChild.attributes[1].nodeValue, 
+                          2: $( "li" ).get( 2 ).lastChild.attributes[1].nodeValue
+                       },
+                   }).done(function(data) {
+                     
+                   }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+                       console.log(XMLHttpRequest);
+                   })
+           } );
+         } );
+         $(document).ready(function () {
+               $.ajax({
+                   url: '/order',
+                   type: 'GET',
+                   success: function (payload) {
+                     console.log(payload)
+                       if (payload) {
+                         for (let i = 0; i < 3; i++) {
+                           $("#sortable").append("<li class=\"ui-state-default\"><img src=\""+ 
+                           payload["order"][i]+".jpg\" alt=\"" + payload["order"][i]+"\"/></li>")
+                         }
+                       } else {
+                           alert('error')
+                       }
+                   },
+                   failure: function (response) {
+                       console.log(response)
+                   }
+               })
+         });
+      </script>
+   </head>
+   <body>
+      <ul id="sortable"></ul>
+   </body>
+</html>

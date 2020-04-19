@@ -13,14 +13,14 @@ You are required to design a web app with single web page (route at the root pat
 requirements.
 When loaded from within a web browser, this web page displays 3 images side by side:
 
-| E  | O | P |
+| E  | A | P |
 
 You may subsitute these with images of your choice.
 Your web page must allow a visitor to reorder these images through a drag-and-drop interface. This
-is to say, if a visitor click on the eggplant and drags it to the right of the orange but to the left of the
+is to say, if a visitor click on the eggplant and drags it to the right of the apple but to the left of the
 pear, your web page must dynamically update to show the images in the following order:
 
-| O | E | P |
+| A | E | P |
 
 The most recent order of the images must persist. That is to say, if the visitor navigates away from
 your web page and comes back later, they must find the 3 images still in the same order as right
